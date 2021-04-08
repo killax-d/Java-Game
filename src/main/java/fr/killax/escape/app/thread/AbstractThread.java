@@ -14,12 +14,12 @@ public abstract class AbstractThread extends Thread {
 	protected ThreadState state;
 	
 	// FPS Cap
-	protected final long OPTIMAL_TIME = 1000000000 / Config.TARGET_FPS;
+	protected long OPTIMAL_TIME = 1000000000 / Config.TARGET_FPS;
 	protected long lastLoopTime = System.nanoTime();
 	private long lastFpsTime = 0;
 	private int fps = 0;
 	private int lastFPS = 0;
-   
+
 	
 	public AbstractThread() {
 		this.state = ThreadState.CREATED;
@@ -28,6 +28,11 @@ public abstract class AbstractThread extends Thread {
 	public void start() {
 		this.state = ThreadState.RUNNIG;
 		super.start();
+	}
+	
+	public void setFPSCap(int fps) {
+		if (fps <= 0) return;
+		OPTIMAL_TIME = 1000000000 / fps;
 	}
 	
 	public abstract void run();
