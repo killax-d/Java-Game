@@ -31,9 +31,15 @@ public class AnimatedImage {
 	public BufferedImage getImage() {
 		return this.image;
 	}
+
+	public void draw(int x, int y, int width, int height, Graphics g) {
+		if (this.animation == null) g.drawImage(this.image, x, y, width, height, null);
+		else this.animation.draw(x, y, g);
+	}
 	
 	public void draw(int x, int y, Graphics g) {
-		this.animation.draw(x, y, g);
+		if (this.animation == null) g.drawImage(this.image, x, y, null);
+		else this.animation.draw(x, y, g);
 	}
 	
 	public void update(double delta) {
