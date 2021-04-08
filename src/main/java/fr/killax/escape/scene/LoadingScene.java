@@ -24,7 +24,7 @@ public class LoadingScene extends AbstractScene {
 
 	@Override
 	public void draw(Graphics g) {
-		g.drawImage(Assets.getImage("textures/ui/loadingBackground.jpg"), 0, 0, (int) (Config.WINDOW_SIZE.getWidth()), (int) (Config.WINDOW_SIZE.getHeight()), null);
+		g.drawImage(Assets.getImage("textures/ui/loadingBackground.jpg").getImage(), 0, 0, (int) (Config.WINDOW_SIZE.getWidth()), (int) (Config.WINDOW_SIZE.getHeight()), null);
 		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Arial", Font.BOLD, 18));

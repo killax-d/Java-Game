@@ -16,19 +16,19 @@ import javax.imageio.ImageIO;
 public class Assets {
 	
 	/**
-	 * @author Donné Dylan
+	 * @author DonnÃ© Dylan
 	 * Simple assets loader
 	 */
 
-	private static Map<String, BufferedImage> assets = new HashMap<String, BufferedImage>();
+	private static Map<String, AnimatedImage> assets = new HashMap<String, AnimatedImage>();
 	private static Map<String, BufferedSound> sounds = new HashMap<String, BufferedSound>();
 	private static Map<String, Font> fonts = new HashMap<String, Font>();
 
 	// The fail-safe default texture for missing assets
-	private static BufferedImage NO_TEXTURE = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+	private static AnimatedImage NO_TEXTURE = new AnimatedImage(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB));
 	private static Font NO_FONT = new Font("Arial", Font.TRUETYPE_FONT, 12);
 	static {
-		NO_TEXTURE.setRGB(0, 0, new Color(140, 87, 113).getRGB());
+		NO_TEXTURE.getImage().setRGB(0, 0, new Color(140, 87, 113).getRGB());
 	}
 	
 	
@@ -37,13 +37,13 @@ public class Assets {
 	 * @param path
 	 * @return BufferedImage
 	 */
-	public static BufferedImage getImage(String path) {
+	public static AnimatedImage getImage(String path) {
 		if (assets.containsKey(path)) {
 			return assets.get(path);
 		}
 		try (InputStream is = Assets.class.getResourceAsStream(path)) {
 			if (is != null) {
-				BufferedImage img = ImageIO.read(is);
+				AnimatedImage img = new AnimatedImage(ImageIO.read(is));
 				assets.putIfAbsent(path, img);
 				return img;
 			}
@@ -110,12 +110,12 @@ public class Assets {
 	 * @return BufferedImage
 	 */
 	public static BufferedImage getTile(String path, int width, int height, int x, int y) {
-		BufferedImage tileset = getImage(path);
+		BufferedImage tileset = getImage(path).getImage();
 		boolean validTexture = tileset.getWidth()>= width && tileset.getHeight() >= height;
 		if (validTexture) {
 			return tileset.getSubimage(x * width, y * height, width, height);
 		}
-		return NO_TEXTURE;
+		return NO_TEXTURE.getImage();
 	}
 
 }
