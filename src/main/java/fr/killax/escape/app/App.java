@@ -2,6 +2,7 @@ package fr.killax.escape.app;
 
 import fr.killax.escape.app.thread.DrawThread;
 import fr.killax.escape.app.thread.GameThread;
+import fr.killax.escape.assets.I18N;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,6 +29,7 @@ public class App {
 	private SceneManager sceneManager;
 
 	public App() {
+		I18N.init();
 		this.gThread = new GameThread();
 		this.dThread = new DrawThread();
 		this.frame = new MainFrame();

@@ -33,7 +33,7 @@ public class SceneManager extends AbstractSceneManager {
 		
 		App.instance().setFPS(scene.getFPSCap());
 		
-		this.transition = transition; // Add Transition
+		this.transition = transition; // Add Transition (can be null)
 		this.queue.add(scene);
 		// Maybe add animation
 		if (this.queue.size() > 1)
