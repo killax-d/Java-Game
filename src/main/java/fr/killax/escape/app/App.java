@@ -53,7 +53,7 @@ public class App {
 				sceneManager.setScene(new MainMenuScene(), new FadeInTransition());
 			}
 			
-		}, 5000);
+		}, 2000);
 	}
 	
 	public SceneManager getSceneManager() { return this.sceneManager; }
