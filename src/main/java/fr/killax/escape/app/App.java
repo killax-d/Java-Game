@@ -1,17 +1,11 @@
 package fr.killax.escape.app;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import fr.killax.escape.app.thread.AbstractThread.ThreadState;
 import fr.killax.escape.app.thread.DrawThread;
 import fr.killax.escape.app.thread.GameThread;
 import fr.killax.escape.assets.I18N;
 import fr.killax.escape.manager.SceneManager;
-import fr.killax.escape.scene.LoadingScene;
-import fr.killax.escape.scene.MainMenuScene;
 import fr.killax.escape.scene.SplashScene;
-import fr.killax.escape.scene.transition.FadeInTransition;
 
 public class App {
 	
@@ -45,24 +39,6 @@ public class App {
 		this.frame.addMouseListener(sceneManager);
 		this.frame.addMouseMotionListener(sceneManager);
 		this.frame.addMouseWheelListener(sceneManager);
-		
-		new Timer().schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				sceneManager.setScene(new LoadingScene(), new FadeInTransition());
-			}
-			
-		}, 5000);
-		
-		new Timer().schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				sceneManager.setScene(new MainMenuScene(), new FadeInTransition());
-			}
-			
-		}, 7000);
 	}
 	
 	public SceneManager getSceneManager() { return this.sceneManager; }

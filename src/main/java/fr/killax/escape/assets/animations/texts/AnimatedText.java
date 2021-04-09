@@ -52,6 +52,12 @@ public class AnimatedText {
 			return (int) this.images[0].getAnimation().getAnimationBounds().getHeight();
 		return font.getSize();
 	}
+	
+	public long getAnimationDelay() {
+		return eachLetter 
+			? this.msDelay * this.text.length()-1
+			: -1;
+	}
 
 	public void play() {
 		if (msDelay > 0)

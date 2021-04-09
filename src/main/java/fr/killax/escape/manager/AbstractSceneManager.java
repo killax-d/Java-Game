@@ -10,7 +10,12 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
+import fr.killax.escape.app.App;
 import fr.killax.escape.scene.AbstractScene;
+import fr.killax.escape.scene.LoadingScene;
+import fr.killax.escape.scene.MainMenuScene;
+import fr.killax.escape.scene.SplashScene;
+import fr.killax.escape.scene.transition.FadeInTransition;
 
 public abstract class AbstractSceneManager extends Container implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 	
@@ -70,6 +75,9 @@ public abstract class AbstractSceneManager extends Container implements KeyListe
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_S) App.instance().getSceneManager().setScene(new SplashScene(), new FadeInTransition());
+		if (e.getKeyCode() == KeyEvent.VK_L) App.instance().getSceneManager().setScene(new LoadingScene(), new FadeInTransition());
+		if (e.getKeyCode() == KeyEvent.VK_M) App.instance().getSceneManager().setScene(new MainMenuScene(), new FadeInTransition());
 		if (getScene() instanceof KeyListener)
 			((KeyListener) getScene()).keyPressed(e);
 	}

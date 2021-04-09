@@ -10,5 +10,7 @@ public class Config {
 	public static String WINDOW_TITLE = I18N.getText("window.title");
 	public static int TARGET_FPS = 60;
 	public static boolean DEBUG = true;
+	public static float MUSIC_VOLUME = 0.05F;
+	public static float SFX_VOLUME = 0.1F;
 
 }

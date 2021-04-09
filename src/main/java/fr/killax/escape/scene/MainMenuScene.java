@@ -7,14 +7,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import fr.killax.escape.app.App;
 import fr.killax.escape.app.Config;
 import fr.killax.escape.app.components.ImageButtonComponent;
 import fr.killax.escape.assets.Assets;
-import fr.killax.escape.scene.transition.FadeInTransition;
 
 public class MainMenuScene extends AbstractScene implements KeyListener, MouseListener, MouseMotionListener {
 
@@ -71,18 +68,7 @@ public class MainMenuScene extends AbstractScene implements KeyListener, MouseLi
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (BUTTON_START.release(e)) {
-			App.instance().getSceneManager().setScene(new LoadingScene(), new FadeInTransition());
-			
-			new Timer().schedule(new TimerTask() {
-
-				@Override
-				public void run() {
-					App.instance().getSceneManager().setScene(new MainMenuScene(), new FadeInTransition());
-				}
-				
-			}, 2000);
-		}
+		//if (BUTTON_START.release(e))
 		if (BUTTON_QUIT.release(e))
 			App.instance().quit();
 	}

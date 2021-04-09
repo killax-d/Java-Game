@@ -8,9 +8,11 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+import fr.killax.escape.app.Config;
+
 /**
  * 
- * @author Donné Dylan
+ * @author DonnÃ© Dylan
  * Simple sound Class
  */
 
@@ -18,9 +20,6 @@ public class BufferedSound {
 	
 	public static int MUSIC = 0;
 	public static int SFX = 1;
-	
-	public static float MUSIC_VOLUME = 0.05F;
-	public static float SFX_VOLUME = 0.1F;
 	
 	private Clip clip;
 	private AudioInputStream audioStream;
@@ -43,7 +42,7 @@ public class BufferedSound {
 		open();
 		playing = false;
 		this.type = type;
-		setVolume(0.0F);
+		adjustVolume();
 	}
 
 	/**
@@ -116,16 +115,17 @@ public class BufferedSound {
 	 */
 	public static void setVolumeType(int type, float value) {
 		if (type == MUSIC)
-			MUSIC_VOLUME = value;
+			Config.MUSIC_VOLUME = value;
 		if (type == SFX)
-			SFX_VOLUME = value;
+			Config.SFX_VOLUME = value;
 	}
 	
 	/**
 	 * adjust volume from new settings
 	 */
-	public void adjustVolume() {
-		setVolume((type == MUSIC ? MUSIC_VOLUME : SFX_VOLUME));
+	public BufferedSound adjustVolume() {
+		setVolume((type == MUSIC ? Config.MUSIC_VOLUME : Config.SFX_VOLUME));
+		return this;
 	}
 
 	/**
