@@ -53,7 +53,7 @@ public class App {
 				sceneManager.setScene(new LoadingScene(), new FadeInTransition());
 			}
 			
-		}, 2000);
+		}, 5000);
 		
 		new Timer().schedule(new TimerTask() {
 
@@ -62,7 +62,7 @@ public class App {
 				sceneManager.setScene(new MainMenuScene(), new FadeInTransition());
 			}
 			
-		}, 5000);
+		}, 7000);
 	}
 	
 	public SceneManager getSceneManager() { return this.sceneManager; }

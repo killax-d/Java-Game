@@ -4,36 +4,27 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import fr.killax.escape.assets.AnimatedImage;
-
 public class ZoomAnimation extends AbstractAnimation {
 	
-	private float zoom;
+	private float from;
 	private float speed;
 	private float step;
-	private float end;
-	
-	private AnimatedImage image;
+	private float to;
 
-	public ZoomAnimation(float zoom, float speed, float end) {
-		this.zoom = zoom;
+	public ZoomAnimation(float from, float speed, float to) {
+		this.from = from <= 0.0f ? 1.0f : from;
 		this.speed = speed;
-		this.end = end;
-		reset();
-	}
-
-	public void setImage(AnimatedImage image) {
-		this.image = image;
+		this.to = to <= 0.0f ? 1.0f : to;
 	}
 	
 	@Override
 	public void update(double delta) {
 		if (this.image == null) return;
 		if (!this.running) return;
-		if (this.step - (speed * delta) <= this.end) {
+		if (this.step - (speed * delta) <= this.to) {
 			this.running = false;
 			this.ended = true;
-			this.step = this.end;
+			this.step = this.to;
 		} else 
 			this.step -= (speed * delta);
 			
@@ -41,22 +32,30 @@ public class ZoomAnimation extends AbstractAnimation {
 
 	@Override
 	public void draw(int x, int y, Graphics g) {
+		if (!this.started) return;
 		if (this.image == null) return;
+		if (this.image.getImage() == null) return;
 		g.drawImage(image.getImage().getScaledInstance((int) (image.getImage().getWidth() * this.step), (int) (image.getImage().getHeight() * this.step), Image.SCALE_FAST), x, y, null);
 	}
 
 	@Override
-	public void play() {
-		this.running = true;
-	}
-
-	@Override
 	public void reset() {
-		this.step = zoom;
+		super.reset();
+		this.step = from;
 	}
 	
 	public Dimension getAnimationBounds() {
 		return new Dimension((int) (this.image.getImage().getWidth() * this.step), (int) (this.image.getImage().getHeight() * this.step));
+	}
+
+	@Override
+	public ZoomAnimation newInstance() {
+		return new ZoomAnimation(from, speed, to);
+	}
+
+	@Override
+	public String toString() {
+		return "ZoomAnimation [from=" + from + ", speed=" + speed + ", step=" + step + ", to=" + to + "]";
 	}
 
 }
