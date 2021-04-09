@@ -49,7 +49,7 @@ public class ZoomAnimation extends AbstractAnimation {
 	}
 
 	@Override
-	public ZoomAnimation newInstance() {
+	public ZoomAnimation clone() {
 		return new ZoomAnimation(from, speed, to);
 	}
 

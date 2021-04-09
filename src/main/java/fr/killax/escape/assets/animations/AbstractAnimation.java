@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import fr.killax.escape.assets.AnimatedImage;
 
-public abstract class AbstractAnimation {
+public abstract class AbstractAnimation implements Cloneable {
 
 	protected boolean started;
 	protected boolean running;
@@ -31,5 +31,5 @@ public abstract class AbstractAnimation {
 	
 	public boolean isEnded() { return ended; }
 	
-	public abstract AbstractAnimation newInstance();
+	public abstract AbstractAnimation clone();
 }

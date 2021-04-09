@@ -31,7 +31,7 @@ public class AnimatedText {
 		this.images = new AnimatedImage[eachLetter ? text.length() : 1];
 		if (eachLetter)
 			for (int i = 0; i < text.length(); i++)
-				this.images[i] = new AnimatedImage(null, animation.newInstance());
+				this.images[i] = new AnimatedImage(null, animation.clone());
 		else this.images[0] = new AnimatedImage(null, animation);
 		this.msDelay = msDelay;
 		
