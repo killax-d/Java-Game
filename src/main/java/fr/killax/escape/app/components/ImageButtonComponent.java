@@ -15,8 +15,8 @@ public class ImageButtonComponent extends AbstractComponent {
 	public ImageButtonComponent(AnimatedImage image, int x, int y, int width, int height) {
 		super(x, y, width, height);
 		this.image = image;
-		this.hover = false;
-		this.focus = false;
+		this.hover = true;
+		this.focus = true;
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class ImageButtonComponent extends AbstractComponent {
 	}
 	
 	public boolean release(MouseEvent e) {
-		return focus && isVisible() && isActive() && isInside(e.getX(), e.getY());
+		return hover && focus && isVisible() && isActive() && isInside(e.getX(), e.getY());
 	}
 
 	protected boolean isInside(int x, int y) {

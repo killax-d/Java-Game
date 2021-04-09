@@ -46,10 +46,7 @@ public class MainMenuScene extends AbstractScene implements KeyListener, MouseLi
 	public void keyTyped(KeyEvent e) {}
 
 	@Override
-	public void mouseDragged(MouseEvent e) {
-		BUTTON_START.move(e);
-		BUTTON_QUIT.move(e);
-	}
+	public void mouseDragged(MouseEvent e) {}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
