@@ -16,12 +16,11 @@ public class SplashScene extends AbstractScene {
 
 	private static final long serialVersionUID = 1L;
 	
-	private final AnimatedImage LOGO = Assets.getImage("textures/ui/logo.png");
-	private final AnimatedText KILLAX = new AnimatedText("KILLAX", new Font("Arial", Font.BOLD, 32), new ZoomAnimation(3.0f, 0.05f, 1.0f), true, 250);
-	private final AnimatedText KILLAX2 = new AnimatedText("KILLAX", new Font("Arial", Font.BOLD, 32), new ZoomAnimation(3.0f, 0.05f, 1.0f));
+	private final AnimatedImage LOGO = Assets.getImage("textures/ui/logo.png").setAnimation(new ZoomAnimation(3.0f, 0.05f, 0.5f));
+	private final AnimatedText KILLAX = new AnimatedText("KILLAX", new Font("Arial", Font.BOLD, 32), new ZoomAnimation(0.25f, 0.05f, 1.0f), true, 250);
+	private final AnimatedText KILLAX2 = new AnimatedText("KILLAX", new Font("Arial", Font.BOLD, 32), new ZoomAnimation(0.25f, 0.05f, 1.0f));
 	
 	public SplashScene() {
-		LOGO.setAnimation(new ZoomAnimation(3.0f, 0.05f, 0.5f));
 		LOGO.getAnimation().play();
 		new Timer().schedule(new TimerTask() {
 
@@ -31,7 +30,7 @@ public class SplashScene extends AbstractScene {
 				KILLAX2.play();
 			}
 			
-		}, 0);
+		}, 500);
 	}
 	
 	@Override

@@ -19,18 +19,20 @@ public class AnimatedImage {
 		this(image, null);
 	}
 	
-	public void setAnimation(AbstractAnimation animation) {
+	public AnimatedImage setAnimation(AbstractAnimation animation) {
 		this.animation = animation;
 		animation.setImage(this);
+		return this;
 	}
 	
 	public AbstractAnimation getAnimation() {
 		return this.animation;
 	}
 	
-	public void setImage(BufferedImage image) {
+	public AnimatedImage setImage(BufferedImage image) {
 		this.image = image;
 		if (this.animation != null) this.animation.setImage(this);
+		return this;
 	}
 	
 	public BufferedImage getImage() {

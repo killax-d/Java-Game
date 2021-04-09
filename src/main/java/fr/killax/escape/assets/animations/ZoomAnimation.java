@@ -13,7 +13,7 @@ public class ZoomAnimation extends AbstractAnimation {
 
 	public ZoomAnimation(float from, float speed, float to) {
 		this.from = from <= 0.0f ? 1.0f : from;
-		this.speed = speed;
+		this.speed = from < to ? speed : speed*-1;
 		this.to = to <= 0.0f ? 1.0f : to;
 	}
 	
@@ -21,12 +21,15 @@ public class ZoomAnimation extends AbstractAnimation {
 	public void update(double delta) {
 		if (this.image == null) return;
 		if (!this.running) return;
-		if (this.step - (speed * delta) <= this.to) {
+		if (this.speed < 0 
+				? (this.step + (speed * delta) <= this.to)
+				: (this.step + (speed * delta) >= this.to)
+		){
 			this.running = false;
 			this.ended = true;
 			this.step = this.to;
 		} else 
-			this.step -= (speed * delta);
+			this.step += (speed * delta);
 			
 	}
 
