@@ -11,24 +11,27 @@ import java.awt.event.MouseMotionListener;
 import fr.killax.escape.app.App;
 import fr.killax.escape.app.Config;
 import fr.killax.escape.app.components.ImageButtonComponent;
+import fr.killax.escape.assets.AnimatedImage;
 import fr.killax.escape.assets.Assets;
 
 public class MainMenuScene extends AbstractScene implements KeyListener, MouseListener, MouseMotionListener {
 
 	private static final long serialVersionUID = 1L;
-	private static final ImageButtonComponent BUTTON_START = new ImageButtonComponent(Assets.getImage("textures/ui/play.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 100), (int) Config.WINDOW_SIZE.getHeight()/3, 200, 50);
-	private static final ImageButtonComponent BUTTON_QUIT = new ImageButtonComponent(Assets.getImage("textures/ui/quit.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 100), (int) Config.WINDOW_SIZE.getHeight()/3+75, 200, 50);
+	private static final AnimatedImage BACKGROUND = Assets.getImage("textures/ui/loadingBackground.jpg");
+	private static final ImageButtonComponent BUTTON_START = new ImageButtonComponent(Assets.getImage("textures/ui/play.png"), Assets.getImage("textures/ui/play_hover.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 150), (int) Config.WINDOW_SIZE.getHeight()/3, 300, 75);
+	private static final ImageButtonComponent BUTTON_QUIT = new ImageButtonComponent(Assets.getImage("textures/ui/quit.png"), Assets.getImage("textures/ui/quit_hover.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 150), (int) Config.WINDOW_SIZE.getHeight()/3+80, 300, 75);
+	
+	public MainMenuScene() {}
 	
 	@Override
-	public void update(double delta) {
-		
-	}
+	public void update(double delta) {}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.GREEN);
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, (int) (Config.WINDOW_SIZE.getWidth()), (int) (Config.WINDOW_SIZE.getHeight()));
 		
+		BACKGROUND.draw(0, 0, (int) Config.WINDOW_SIZE.getWidth(), (int) Config.WINDOW_SIZE.getHeight(), g);
 		BUTTON_START.draw(g);
 		BUTTON_QUIT.draw(g);
 	}
