@@ -45,7 +45,7 @@ public class AnimatedText {
 	public int getWidth() { 
 		if (!eachLetter && this.images[0].getImage() != null)
 			return (int) this.images[0].getAnimation().getAnimationBounds().getWidth();
-		return stringWidth;
+		return getXCoordinate(images.length);
 	}
 	public int getHeight() {
 		if (!eachLetter && this.images[0].getImage() != null)
@@ -89,7 +89,7 @@ public class AnimatedText {
 	
 	private int getXCoordinate(int i) {
 		int sum = 0;
-		for (int index = 0; index < i; index++) sum += this.images[index].getImage().getWidth();
+		for (int index = 0; index < i; index++) if (this.images[index].getImage() != null) sum += this.images[index].getImage().getWidth();
 		// 1 pixel padding
 		return 1 + i * 2 + sum;
 	}

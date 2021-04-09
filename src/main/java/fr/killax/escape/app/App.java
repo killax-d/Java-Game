@@ -80,6 +80,7 @@ public class App {
 	public void quit() {
 		this.gThread.setState(ThreadState.STOPPED);
 		this.dThread.setState(ThreadState.STOPPED);
+		this.frame.dispose();
 	}
 	
 	public void setFPS(int fps) {

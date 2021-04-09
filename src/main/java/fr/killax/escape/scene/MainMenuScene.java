@@ -87,7 +87,7 @@ public class MainMenuScene extends AbstractScene implements KeyListener, MouseLi
 			}, 2000);
 		}
 		if (BUTTON_QUIT.release(e))
-			App.instance().getFrame().dispose();
+			App.instance().quit();
 	}
 
 }
