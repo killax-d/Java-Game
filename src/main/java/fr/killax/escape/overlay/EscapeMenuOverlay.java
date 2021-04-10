@@ -1,6 +1,7 @@
 package fr.killax.escape.overlay;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,7 +18,7 @@ public class EscapeMenuOverlay extends AbstractOverlay implements KeyListener, M
 
 	private static final long serialVersionUID = 1L;
 	
-	private static final ImageButtonComponent BUTTON_QUIT = new ImageButtonComponent(Assets.getImage("textures/ui/quit.png"), Assets.getImage("textures/ui/quit_hover.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 150), (int) Config.WINDOW_SIZE.getHeight()/3+80, 300, 75);
+	private static final ImageButtonComponent BUTTON_QUIT = new ImageButtonComponent("QUIT", new Font("Arial", Font.BOLD, 48), Assets.getImage("textures/ui/panel.png"), Assets.getImage("textures/ui/panel_hover.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 200), (int) Config.WINDOW_SIZE.getHeight()/3+80, 400, 100);
 	
 	@Override
 	public void update(double delta) {}
