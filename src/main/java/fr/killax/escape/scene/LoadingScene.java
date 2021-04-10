@@ -18,14 +18,14 @@ public class LoadingScene extends AbstractScene {
 
 	private static final long serialVersionUID = 1L;
 
-	private int loadingImageStep = 0;
+	private float loadingImageStep = 0;
 	private String loadingText = "Loading";
 	private String tip = Tips.getTip();
 	
 	@Override
 	public void update(double delta) {
-		this.loadingImageStep += 1;
-		if (this.loadingImageStep == 30) this.loadingImageStep = 0;
+		this.loadingImageStep += 1 * delta;
+		if (this.loadingImageStep >= 30) this.loadingImageStep = 0;
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class LoadingScene extends AbstractScene {
 				(int) (Config.WINDOW_SIZE.getHeight()-textSize.getMaxY()) - 12
 			);
 		
-		g.drawImage(Assets.getTile("textures/ui/loading.png", 200, 200, this.loadingImageStep, 0).getScaledInstance(32, 32, Image.SCALE_FAST),
+		g.drawImage(Assets.getTile("textures/ui/loading.png", 200, 200, (int) this.loadingImageStep, 0).getScaledInstance(32, 32, Image.SCALE_FAST),
 				(int) Config.WINDOW_SIZE.getWidth() - 40,
 				(int) Config.WINDOW_SIZE.getHeight() - 40, null);
 
