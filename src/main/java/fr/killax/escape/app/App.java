@@ -34,7 +34,7 @@ public class App {
 		this.gThread.start();
 		this.dThread.start();
 		this.frame.setContentPane(this.sceneManager);
-		this.sceneManager.setScene(new SplashScene(), null);
+		this.sceneManager.pushScene(new SplashScene(), null);
 		this.frame.addKeyListener(sceneManager);
 		this.frame.addMouseListener(sceneManager);
 		this.frame.addMouseMotionListener(sceneManager);
