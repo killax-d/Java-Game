@@ -3,6 +3,7 @@ package fr.killax.escape.manager;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -66,8 +67,14 @@ public class SceneManager extends AbstractManager<AbstractScene> {
 	}
 	
 	private void drawFPS(Graphics g) {
-		g.setColor(Color.GREEN);
-		g.setFont(new Font("Arial", Font.BOLD, 24));
-		g.drawString(String.format("FPS : %s", App.instance().getFPS()), 10, 10 + 24);
+		int padding = 2;
+		String fps = String.format("FPS: %s", App.instance().getFPS());
+		g.setFont(new Font("Arial", Font.BOLD, 12));
+		Rectangle2D bounds = g.getFontMetrics().getStringBounds(fps, g);
+		
+		g.setColor(new Color(0, 0, 0, 0.5f));
+		g.fillRect(0, 0, (int) bounds.getWidth() + padding*2, (int) bounds.getHeight() + padding*2);
+		g.setColor(Color.WHITE);
+		g.drawString(fps, padding, padding + g.getFont().getSize());
 	}
 }
