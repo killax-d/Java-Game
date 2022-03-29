@@ -1,17 +1,11 @@
 package fr.killax.escape.app;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import fr.killax.escape.app.thread.AbstractThread.ThreadState;
 import fr.killax.escape.app.thread.DrawThread;
 import fr.killax.escape.app.thread.GameThread;
 import fr.killax.escape.assets.I18N;
 import fr.killax.escape.manager.SceneManager;
-import fr.killax.escape.scene.LoadingScene;
-import fr.killax.escape.scene.MainMenuScene;
 import fr.killax.escape.scene.SplashScene;
-import fr.killax.escape.scene.transition.FadeInTransition;
 
 public class App {
 	
@@ -40,29 +34,11 @@ public class App {
 		this.gThread.start();
 		this.dThread.start();
 		this.frame.setContentPane(this.sceneManager);
-		this.sceneManager.setScene(new SplashScene(), null);
+		this.sceneManager.pushScene(new SplashScene(), null);
 		this.frame.addKeyListener(sceneManager);
 		this.frame.addMouseListener(sceneManager);
 		this.frame.addMouseMotionListener(sceneManager);
 		this.frame.addMouseWheelListener(sceneManager);
-		
-		new Timer().schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				sceneManager.setScene(new LoadingScene(), new FadeInTransition());
-			}
-			
-		}, 2000);
-		
-		new Timer().schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				sceneManager.setScene(new MainMenuScene(), new FadeInTransition());
-			}
-			
-		}, 5000);
 	}
 	
 	public SceneManager getSceneManager() { return this.sceneManager; }
@@ -80,6 +56,7 @@ public class App {
 	public void quit() {
 		this.gThread.setState(ThreadState.STOPPED);
 		this.dThread.setState(ThreadState.STOPPED);
+		System.exit(0);
 	}
 	
 	public void setFPS(int fps) {

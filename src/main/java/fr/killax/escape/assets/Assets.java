@@ -75,6 +75,17 @@ public class Assets {
 		}
 		return null;
 	}
+	
+	/**
+	 * adjust the game volume
+	 */
+	public static void adjustVolume() {
+		for (BufferedSound sound : sounds.values()) {
+			if(sound != null) {
+				sound.adjustVolume();
+			}
+		}
+	}
 
 	
 	/**
@@ -102,7 +113,6 @@ public class Assets {
 		fonts.putIfAbsent(path, NO_FONT);
 		return NO_FONT.deriveFont(size);
 	}
-
 	
 	/**
 	 * Sprite cropper

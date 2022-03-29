@@ -19,13 +19,20 @@ public class AnimatedImage {
 		this(image, null);
 	}
 	
-	public void setAnimation(AbstractAnimation animation) {
+	public AnimatedImage setAnimation(AbstractAnimation animation) {
 		this.animation = animation;
 		animation.setImage(this);
+		return this;
 	}
 	
 	public AbstractAnimation getAnimation() {
 		return this.animation;
+	}
+	
+	public AnimatedImage setImage(BufferedImage image) {
+		this.image = image;
+		if (this.animation != null) this.animation.setImage(this);
+		return this;
 	}
 	
 	public BufferedImage getImage() {
@@ -33,17 +40,23 @@ public class AnimatedImage {
 	}
 
 	public void draw(int x, int y, int width, int height, Graphics g) {
+		if (this.image == null) return;
 		if (this.animation == null) g.drawImage(this.image, x, y, width, height, null);
 		else this.animation.draw(x, y, g);
 	}
 	
 	public void draw(int x, int y, Graphics g) {
-		if (this.animation == null) g.drawImage(this.image, x, y, null);
-		else this.animation.draw(x, y, g);
+		this.draw(x, y, image.getWidth(), image.getHeight(), g);
 	}
 	
 	public void update(double delta) {
+		if (this.animation == null) return;
 		this.animation.update(delta);
+	}
+
+	@Override
+	public String toString() {
+		return "AnimatedImage [image=" + image + ", animation=" + animation + "]";
 	}
 	
 }

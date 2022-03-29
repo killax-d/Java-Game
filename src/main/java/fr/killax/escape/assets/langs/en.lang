@@ -1,1 +1,5 @@
 window.title=Currently In Devlopment
+game.tips.dodge=Don't forget to dodge when a enemy is rushing you.%newline%You can avoid the attack by pressing "D"
+game.tips.home=You can use the teleport crystal to get back at the basement
+game.tips.shop=Don't forget to buy somes potions !
+game.tips.death=If you die, then...%newline%You're just Dead... !

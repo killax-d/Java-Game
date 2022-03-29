@@ -9,9 +9,9 @@ public class GameThread extends AbstractThread {
     	while (state == ThreadState.RUNNIG || state == ThreadState.PAUSED) {
 			double delta = calibrate();
 			
-			if (state != ThreadState.PAUSED) App.instance().getSceneManager().updateScene(delta);
+			if (state != ThreadState.PAUSED) App.instance().getSceneManager().update(delta);
 			
-			try { Thread.sleep((lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000); } catch (Exception e) {};
+    		try { Thread.sleep((lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000); } catch (Exception e) {};
     	}
     }
     

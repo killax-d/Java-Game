@@ -1,37 +1,38 @@
 package fr.killax.escape.scene;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import fr.killax.escape.app.App;
 import fr.killax.escape.app.Config;
 import fr.killax.escape.app.components.ImageButtonComponent;
+import fr.killax.escape.assets.AnimatedImage;
 import fr.killax.escape.assets.Assets;
-import fr.killax.escape.scene.transition.FadeInTransition;
 
 public class MainMenuScene extends AbstractScene implements KeyListener, MouseListener, MouseMotionListener {
 
 	private static final long serialVersionUID = 1L;
-	private static final ImageButtonComponent BUTTON_START = new ImageButtonComponent(Assets.getImage("textures/ui/play.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 100), (int) Config.WINDOW_SIZE.getHeight()/3, 200, 50);
-	private static final ImageButtonComponent BUTTON_QUIT = new ImageButtonComponent(Assets.getImage("textures/ui/quit.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 100), (int) Config.WINDOW_SIZE.getHeight()/3+75, 200, 50);
+	private static final AnimatedImage BACKGROUND = Assets.getImage("textures/ui/loadingBackground.jpg");
+	private static final ImageButtonComponent BUTTON_START = new ImageButtonComponent("PLAY", new Font("Arial", Font.BOLD, 48), Assets.getImage("textures/ui/panel.png"), Assets.getImage("textures/ui/panel_hover.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 200), (int) Config.WINDOW_SIZE.getHeight()/3, 400, 100);
+	private static final ImageButtonComponent BUTTON_QUIT = new ImageButtonComponent("QUIT", new Font("Arial", Font.BOLD, 48), Assets.getImage("textures/ui/panel.png"), Assets.getImage("textures/ui/panel_hover.png"), (int) (Config.WINDOW_SIZE.getWidth()/2 - 200), (int) Config.WINDOW_SIZE.getHeight()/3+110, 400, 100);
+	
+	public MainMenuScene() {}
 	
 	@Override
-	public void update(double delta) {
-		
-	}
+	public void update(double delta) {}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.GREEN);
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, (int) (Config.WINDOW_SIZE.getWidth()), (int) (Config.WINDOW_SIZE.getHeight()));
 		
+		BACKGROUND.draw(0, 0, (int) Config.WINDOW_SIZE.getWidth(), (int) Config.WINDOW_SIZE.getHeight(), g);
 		BUTTON_START.draw(g);
 		BUTTON_QUIT.draw(g);
 	}
@@ -46,10 +47,7 @@ public class MainMenuScene extends AbstractScene implements KeyListener, MouseLi
 	public void keyTyped(KeyEvent e) {}
 
 	@Override
-	public void mouseDragged(MouseEvent e) {
-		BUTTON_START.move(e);
-		BUTTON_QUIT.move(e);
-	}
+	public void mouseDragged(MouseEvent e) {}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
@@ -74,20 +72,9 @@ public class MainMenuScene extends AbstractScene implements KeyListener, MouseLi
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (BUTTON_START.release(e)) {
-			App.instance().getSceneManager().setScene(new LoadingScene(), new FadeInTransition());
-			
-			new Timer().schedule(new TimerTask() {
-
-				@Override
-				public void run() {
-					App.instance().getSceneManager().setScene(new MainMenuScene(), new FadeInTransition());
-				}
-				
-			}, 2000);
-		}
+		//if (BUTTON_START.release(e))
 		if (BUTTON_QUIT.release(e))
-			App.instance().getFrame().dispose();
+			App.instance().quit();
 	}
 
 }

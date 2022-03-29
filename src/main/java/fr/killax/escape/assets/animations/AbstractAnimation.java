@@ -5,18 +5,31 @@ import java.awt.Graphics;
 
 import fr.killax.escape.assets.AnimatedImage;
 
-public abstract class AbstractAnimation {
+public abstract class AbstractAnimation implements Cloneable {
 
+	protected boolean started;
 	protected boolean running;
 	protected boolean ended;
+	protected AnimatedImage image;
 
-	public abstract void setImage(AnimatedImage image);
+	public void setImage(AnimatedImage image) {	this.image = image; }
+	
 	public abstract void update(double delta);
 	public abstract void draw(int x, int y, Graphics g);
-	public abstract void play();
-	public abstract void reset();
+
+	public void play() {
+		reset();
+		this.started = true;
+		this.running = true;
+	}
+	
+	public void reset() {
+		this.started = false;
+	}
 	
 	public abstract Dimension getAnimationBounds();
 	
 	public boolean isEnded() { return ended; }
+	
+	public abstract AbstractAnimation clone();
 }
